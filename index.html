@@ -14,49 +14,40 @@
 
 <body>
    
-    <nav>
-        <h1>Eco-Fit</h1>
-        <div class="nav-part2">
-            <div class="nav-elem">
-                <h4>What makes us different?</h4>
-                
-            </div>
-            <div class="nav-elem">
-               
-            </div>
-            <div class="nav-elem">
-                <h4> <a href="emmision calculator.html">  Carbon Savings Calculator</a></h4>
-            </div>
-            <div class="nav-elem">
-                
-            </div>
-            <div class="nav-elem">
-                
-            </div>
-            <div class="nav-elem">
-                <h4>User Journeys</h4>
-            </div>
+    <nav class="navbar bg">
+        <div class="navbar-left">
+          <div class="hamburger" id="hamburger">&#9776;</div>
         </div>
-        <button onclick="window.location.href='login.html'" id="signin-section">Take charge <svg fill="none" viewBox="0 0 20 20">
-        
-            <path fill="#fff"
-                d="M2.5 14.375V17.5h3.125l9.217-9.217-3.125-3.125L2.5 14.375Zm14.758-8.508a.83.83 0 0 0 0-1.175l-1.95-1.95a.83.83 0 0 0-1.175 0l-1.525 1.525 3.125 3.125 1.525-1.525Z">
-            </path>
-            </svg></button>
-            <button id="profileButton" style="display: none;">Profile</button>
-            <li id="profile-section" class="hidden">
-                <a href="#" id="profile-button">Profile</a>
-                <div id="profile-modal" class="profile-modal">
-                  <div class="profile-modal-content">
-                    <span class="profile-modal-close">&times;</span>
-                    <p>Name: <span id="profile-name"></span></p>
-                    <p>Username: <span id="profile-username"></span></p>
-                    <p>Email: <span id="profile-email"></span></p>
-                    <button id="logout-button">Logout</button>
-        <div id="nav-bottom">
-
+        <ul class="navlist" id="navlist">
+          <li>
+            <a href="index.html"><i class="material-icons">home</i></a>
+          </li>
+          <li><a href="downloads.html">Downloads</a></li>
+          <li><a href="premium.html">Premium</a></li>
+          <li><a href="subscribe.html">Subscribe</a></li>
+          <li id="signin-section"><a href="signin.html">Sign in</a></li>
+          <li id="profile-section" class="hidden">
+            <a href="#" id="profile-button">Profile</a>
+            <div id="profile-modal" class="profile-modal">
+              <div class="profile-modal-content">
+                <span class="profile-modal-close">&times;</span>
+                <p>Name: <span id="profile-name"></span></p>
+                <p>Username: <span id="profile-username"></span></p>
+                <p>Email: <span id="profile-email"></span></p>
+                <p>Subscription: <span id="profile-subscription"></span></p>
+                <p>Phone: <span id="profile-phone"></span></p>
+                <button id="logout-button">Logout</button>
+              </div>
+            </div>
+          </li>
+          <li><a href="about.html">About</a></li>
+          <button id="share-button">Share</button>
+        </ul>
+        <div class="navbar-right">
+          <input type="text" name="search" id="search" placeholder="Search" />
+          <button class="btn">Search</button>
         </div>
-    </nav>
+      </nav>
    
     <div id="main">
         <!-- Modal -->
