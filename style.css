@@ -88,6 +88,8 @@ nav button svg {
     align-items: center;
     justify-content: center;
     position: relative;
+    ;
+    
 }
 #page1 h1 span3 {
     font-size: 6vw;
@@ -395,6 +397,7 @@ nav button svg {
     object-fit: cover;
     border-radius: 5%;
   }
+
 
 .section {
     width: 100%;
