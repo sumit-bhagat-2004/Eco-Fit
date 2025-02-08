@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown Modals</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="Airport.js"></script>
+    <script src="Road.js"></script>
+    <script src="Railway.js"></script>
+    <script src="emmision factor.js"></script>
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+    <h2>Select an Option to See the Modal</h2>
+    
+    <div class="dropdown-container">
+    <label for="dropdown">Choose a Modal:</label>
+    <select id="dropdown" onchange="showModal(this.value)">
+        <option value="">Select</option>
+        <option value="modal1">Flight</option>
+        <option value="modal2">Train</option>
+        <option value="modal3">Car</option>
+        <option value="modal4">MotorBike</option>
+        <option value="modal5">Bicycle</option>
+        <option value="modal6">Jogging</option>
+    </select>
+</div>
+<script>
+let mode = null;
+let fuelType = null;
+</script>
+
+<div id="modals-container">
+    <script>
+        const modalNames = { "modal1": "Flight", "modal2": "Train", "modal3": "Car", "modal4": "MotorBike", "modal5": "Bicycle", "modal6": "Jogging" };
+        for (let i = 1; i <= 6; i++) {
+            document.write(`
+                <div id="modal${i}" class="modal">
+                    <p>This is ${modalNames[`modal${i}`]} Modal</p>
+                    
+                    ${i === 2 ? `
+                    <label for="train-type">Train Type:</label>
+                    <select id="train-type">
+                        <option value="train_regular">Regular</option>
+                        <option value="train_highspeed">High-Speed</option>
+                        <option value="metro">Metro</option>
+                    </select>
+                    <br>` : ''}
+                    
+                    ${i === 3 ? `
+                    <label for="car-type">Car Type:</label>
+                    <select id="car-type">
+                        <option value="diesel">Diesel</option>
+                        <option value="petrol">Petrol</option>
+                        <option value="electric">Electric</option>
+                    </select>
+                    <br>` : ''}
+                    
+                    ${i === 4 ? `
+                    <label for="bike-type">MotorBike Type:</label>
+                    <select id="bike-type">
+                        <option value="petrol">Petrol</option>
+                        <option value="electric">Electric</option>
+                    </select>
+                    <br>` : ''}
+                    
+                    <label for="input1-modal${i}">Enter Value 1:</label>
+                    <input type="text" id="input1-modal${i}">
+                    <br>
+                    <label for="input2-modal${i}">Enter Value 2:</label>
+                    <input type="text" id="input2-modal${i}">
+                    <br>
+                    <button onclick="calculate(${i})">Calculate</button>
+                    <button onclick="addToChart(${i})">Add to Chart</button>
+                    <br>
+                    <button class="close-btn" onclick="closeModal('modal${i}')">Close</button>
+                </div>
+            `);
+
+        }
+    </script>
+</div>
+
+    <h3>Chart</h3>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Value 1</th>
+                <th>Value 2</th>
+                <th>Emission</th>
+            </tr>
+        </thead>
+        <tbody id="chartBody"></tbody>
+<script>
+let result = 0;
+</script>
+    <h3>Total Sum: <span id="totalSum">0</span></h3>
+    <script>
+        let totalSum = 0;
+        async function calculate(modalId) {
+        let val1 = parseFloat(document.getElementById(`input1-modal${modalId}`).value) || 0;
+        let val2 = parseFloat(document.getElementById(`input2-modal${modalId}`).value) || 0;
+        let emission = 0;
+
+        switch (modalId) {
+            case 1: {
+            // Flight modal - calculate airport distance
+            const airport1 = document.getElementById(`input1-modal${modalId}`).value.trim().toUpperCase();
+            const airport2 = document.getElementById(`input2-modal${modalId}`).value.trim().toUpperCase();
+
+            if (!airport1 || !airport2) {
+                alert("Please enter both IATA codes.");
+                return 0;
+            }
+
+            const coord1 = await getAirportCoordinates(airport1);
+            const coord2 = await getAirportCoordinates(airport2);
+
+            if (!coord1 || !coord2) {
+                alert("Could not find one or both airports.");
+                return 0;
+            }
+
+            result = parseFloat(haversine(coord1.lat, coord1.lon, coord2.lat, coord2.lon));
+            break;
+        }
+        case 2: {
+            const station1 = document.getElementById(`input1-modal${modalId}`).value.trim();
+            const station2 = document.getElementById(`input2-modal${modalId}`).value.trim();
+
+            if (!station1 || !station2) {
+                alert("Please enter both railway station names.");
+                return 0;
+            }
+
+            const coord1 = await getStationCoordinates(station1);
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            const coord2 = await getStationCoordinates(station2);
+
+            if (!coord1 || !coord2) {
+                alert("Could not find one or both railway stations.");
+                return 0;
+            }
+
+            result = parseFloat(haversine(coord1.lat, coord1.lon, coord2.lat, coord2.lon));
+            break;
+        }
+        case 3: {
+            // Road distance modal - calculate distance between two locations
+            const location1 = document.getElementById(`input1-modal${modalId}`).value;
+            const location2 = document.getElementById(`input2-modal${modalId}`).value;
+            if (!location1 || !location1) {
+                alert("Please enter both locations.");
+                return 0;
+            }
+            const coord1 = await getCoordinatesroad(location1);
+            const coord2 = await getCoordinatesroad(location2);
+            if (!coord1 || !coord2) {
+            alert("Could not find one or both locations.");
+            return 0;
+            }
+            result = parseFloat(await getRoadDistance(coord1, coord2));
+            break;
+        }
+        case 4: {
+            // Road distance modal - calculate distance between two locations
+            const location1 = document.getElementById(`input1-modal${modalId}`).value;
+            const location2 = document.getElementById(`input2-modal${modalId}`).value;
+            if (!location1 || !location1) {
+                alert("Please enter both locations.");
+                return 0;
+            }
+            const coord1 = await getCoordinatesroad(location1);
+            const coord2 = await getCoordinatesroad(location2);
+            if (!coord1 || !coord2) {
+            alert("Could not find one or both locations.");
+            return 0;
+            }
+            result = parseFloat(await getRoadDistance(coord1, coord2));
+            break;
+        }
+        case 5: {
+            // Road distance modal - calculate distance between two locations
+            const location1 = document.getElementById(`input1-modal${modalId}`).value;
+            const location2 = document.getElementById(`input2-modal${modalId}`).value;
+            if (!location1 || !location1) {
+                alert("Please enter both locations.");
+                return 0;
+            }
+            const coord1 = await getCoordinatesroad(location1);
+            const coord2 = await getCoordinatesroad(location2);
+            if (!coord1 || !coord2) {
+            alert("Could not find one or both locations.");
+            return 0;
+            }
+            result = parseFloat(await getRoadDistance(coord1, coord2));
+            break;
+        }
+        case 6: {
+            // Road distance modal - calculate distance between two locations
+            const location1 = document.getElementById(`input1-modal${modalId}`).value;
+            const location2 = document.getElementById(`input2-modal${modalId}`).value;
+            if (!location1 || !location1) {
+                alert("Please enter both locations.");
+                return 0;
+            }
+            const coord1 = await getCoordinatesroad(location1);
+            const coord2 = await getCoordinatesroad(location2);
+            if (!coord1 || !coord2) {
+            alert("Could not find one or both locations.");
+            return 0;
+            }
+            result = parseFloat(await getRoadDistance(coord1, coord2));
+            break;
+        }
+            default:
+                break;
+        }
+        const distance = result;
+        const modalcheck = document.getElementById("dropdown").value;
+        if (modalcheck === "modal1") {
+              mode = "flight";
+            }
+                else if (modalcheck === "modal2") {
+              mode = document.getElementById("train-type").value;
+            } else if (modalcheck === "modal3") {
+              fuelType = document.getElementById("car-type").value;
+              mode = "car";
+
+            }else if (modalcheck === "modal4") {
+              fuelType = document.getElementById("bike-type").value;;
+              mode = "motorbike";
+            }else if (modalcheck === "modal5") {
+              mode = "bicycle";
+            }else if (modalcheck === "modal6") {
+              mode = "jogging";
+        }
+        console.log(distance);
+        console.log(mode);
+        console.log(fuelType);
+
+        emission = calculateEmission(mode, distance, fuelType)
+
+        return emission;
+    }
+    async function getRoadDistance(coord1, coord2) {
+    const osrmUrl = `http://router.project-osrm.org/route/v1/driving/${coord1.lon},${coord1.lat};${coord2.lon},${coord2.lat}?overview=false`;
+    const headers = { 'User-Agent': 'road-distance-app' };
+
+    try {
+        const response = await fetch(osrmUrl, { headers });
+        const data = await response.json();
+
+        if (data.routes && data.routes.length > 0) {
+            const distanceMeters = data.routes[0].distance;
+            return (distanceMeters / 1000).toFixed(2); // Convert meters to kilometers
+        } else {
+            throw new Error("Could not calculate road distance.");
+        }
+    } catch (error) {
+        console.error("Error calculating road distance:", error);
+        return null;
+    }
+}
+    
+
+    async function addToChart(modalId) {
+    let val1 = document.getElementById(`input1-modal${modalId}`).value;
+    let val2 = document.getElementById(`input2-modal${modalId}`).value;
+    let emission = await calculate(modalId);
+
+    if (result === 0) return;
+
+    let tableBody = document.getElementById('chartBody');
+    let newRow = tableBody.insertRow();
+
+    let cell1 = newRow.insertCell(0);
+    let cell2 = newRow.insertCell(1);
+    let cell3 = newRow.insertCell(2);
+    let cell4 = newRow.insertCell(3);
+    
+    cell1.textContent = modalNames[`modal${modalId}`];
+    cell2.textContent = val1;
+    cell3.textContent = val2;
+    cell4.textContent = emission;
+    
+    totalSum += emission;
+    document.getElementById('totalSum').textContent = totalSum;
+}
+
+
+        function showModal(modalId) {
+            document.querySelectorAll('.modal').forEach(modal => modal.style.display = 'none');
+            if (modalId && document.getElementById(modalId)) {
+                document.getElementById(modalId).style.display = 'block';
+            }
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+    </script>
+</body>
+</html>
