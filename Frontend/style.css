@@ -7,28 +7,41 @@
     height: 100vh;
     object-fit: cover;
     z-index: -1;
-    
-
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    background-color: #111;
 }
 nav {
     position: fixed;
-    /* background-color: rgb(0, 255, 68); */
     display: flex;
-    align-items: flex-start;
-    height: 12vh;
+    align-items: center;
+    height: 3vh;
     width: 100%;
-    padding: 2vw 10.4vw;
-    justify-content: space-between;
-    background-color: #111;
-    z-index: 10;
+    padding: 1.5vw 10vw;
+    justify-content: right;
+    background-color: rgb(65, 15, 65); /* Decent background color */
+    z-index: 1000; /* Ensure navbar is on top */
 }
-
+nav h1 {
+    color: #f6d5d5;
+    font-size: 1vh;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-right: auto;
+    justify-content: left;
+}
 nav ul {
     list-style: none;
     display: flex;
     gap: 2vw;
     padding: 0;
     margin: 0;
+    align-items: center; /* Align li items to the center */
 }
 
 nav ul li {
@@ -38,7 +51,7 @@ nav ul li {
 
 nav ul li a {
     text-decoration: none;
-    color: #fff;
+    color: #f6d5d5;
     font-size: 1vw;
     font-weight: 700;
     text-transform: uppercase;
@@ -46,9 +59,7 @@ nav ul li a {
     transition: color 0.3s ease;
 }
 
-nav ul li a:hover {
-    color: #0BA34E;
-}
+
 
 nav h1 {
     font-size: 3vw;;
@@ -63,9 +74,11 @@ nav h1 {
     z-index: 10;
 }
 
-
+nav ul li a:hover {
+    color: #552a2a; /* Change to white on hover */
+    border-radius: 25%;
+}
 nav button {
-    background-color: #0BA34E;
     display: flex;
     align-items: center;
     padding: 14px 20px;
@@ -120,6 +133,7 @@ nav button svg {
     text-transform: uppercase;
     font-weight: 900;
     line-height: 6vw;
+    color: azure;
 }
 #page1 h1{
     font-size: 6vw;
@@ -127,6 +141,7 @@ nav button svg {
     font-weight: 900;
     margin-top: 4vh;
     line-height: 6vw;
+    color: azure;
 }
 #page1 h1 span1 {
     color: #FF0000;
@@ -149,6 +164,7 @@ nav button svg {
     font-weight: 400;
     margin-top: 4vh;
     font-size: 1.4vw;
+    color: azure;
 }
 
 #page1-something {
@@ -156,6 +172,7 @@ nav button svg {
     align-items: center;
     justify-content: center;
     margin: 2vw;
+    color: azure;
 }
 
 #page1-something h4 {
