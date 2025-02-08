@@ -10,6 +10,7 @@ html,
 body {
     height: 100%;
     width: 100%;
+    background-color: #111;
 }
 
 nav {
@@ -26,43 +27,18 @@ nav {
 }
 
 nav h1 {
-    font-size: 3vw;
+    font-size: 3vw;;
 }
 
 .nav-part2 {
     display: flex;
     gap: 2vw;
     align-items: flex-start;
-    padding: 1vh 0;
+    padding: 2vh ;
     position: relative;
     z-index: 10;
 }
 
-.nav-part2 h4 {
-    font-size: vw;
-    text-transform: uppercase;
-    font-weight: 600;
-    margin-bottom: 2.6vw;
-}
-.nav-part2 h4:hover {
-    color: #FF0000; /* Change text color to green on hover */
-    transform: translateY(-5px); /* Slight lift effect */
-    text-decoration: rgb(red, green, blue); /* Add an underline on hover */
-    cursor: pointer; /* Change cursor to indicate interactivity */
-}
-.nav-part2 h5 {
-    margin-bottom: 1vw;
-    /* background-color: red; */
-    display: none;
-    overflow: hidden;
-}
-
-.nav-part2 h5 span {
-    font-size: 0.77vw;
-    font-weight: 400;
-    transform: translateY(25px);
-    display: inline-block;
-}
 
 nav button {
     background-color: #0BA34E;
@@ -114,7 +90,7 @@ nav button svg {
     position: relative;
 }
 #page1 h1 span3 {
-    font-size: 7vw;
+    font-size: 6vw;
     text-transform: uppercase;
     font-weight: 900;
     line-height: 6vw;
@@ -134,9 +110,9 @@ nav button svg {
 }
 
 #page1 h1 svg {
-    height: 6vw;
+    height: 4vw;
     border-radius: 50%;
-    width: 6vw;
+    width: 4vw;
 
     background-color: #0BA34E;
 }
@@ -388,7 +364,7 @@ nav button svg {
 #page4 {
     min-height: 100vh;
     width: 100%;
-    background-color: #fff;
+    background-color: #111;
     position: relative;
     padding-bottom: 13vh;
 }
@@ -400,11 +376,12 @@ nav button svg {
     flex-wrap: nowrap;
     overflow-x: auto;
     overflow-y: hidden;
+    scrollbar-width: none;;
     }
     .card {
       flex: 0 0 auto;
       width: 33%;
-      height: 100vh;
+      height: 80vh;
       background-color: rgb(64, 139, 89);
       border: 1px solid #fff;
       border-radius: 5%;
@@ -418,15 +395,16 @@ nav button svg {
     object-fit: cover;
     border-radius: 5%;
   }
-}
+
 .section {
     width: 100%;
     height: 72vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 13vh 10vw;
+    padding: 0vh 0vw;
     padding-bottom: 0;
+    overflow-y: auto;
 }
 
 .sec-left {
@@ -480,7 +458,7 @@ nav button svg {
     background-color: #111;
     width: 100%;
     position: relative;
-    padding: 5vh 10.5vw;
+    /* padding: 5vh 10.5vw; */
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -592,7 +570,7 @@ nav button svg {
 }
 
 .page5-elem:hover i {
-    padding-right: 1vw;
+    padding-right: 0;
 }
 
 .page5-elem:hover .over {
@@ -605,8 +583,31 @@ nav button svg {
     border-top: 2px solid #fff;
 }
 
-
-
+.left-column{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#pie-chart{
+    width: 35%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+/* #image-map{
+    width: 50%;
+    /* height: 100%; */
+    /* object-fit: cover; */
+    /* border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity ease 0.1s;
+} */ 
 summary::marker {
     content: "";
 }

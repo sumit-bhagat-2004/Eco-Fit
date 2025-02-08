@@ -59,7 +59,7 @@ function loadingAnimation() {
     })
 }
 
-function navAnimation() {
+/*function navAnimation() {
     var nav = document.querySelector("nav")
 
     nav.addEventListener("mouseenter", function () {
@@ -81,7 +81,7 @@ function navAnimation() {
                 amount: 0.5
             }
         })
-    })
+    })*/
     nav.addEventListener("mouseleave", function () {
         let tl = gsap.timeline()
         tl.to(".nav-part2 h5 span", {
