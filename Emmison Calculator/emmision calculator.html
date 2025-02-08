@@ -9,24 +9,13 @@
     <script src="Road.js"></script>
     <script src="Railway.js"></script>
     <script src="emmision factor.js"></script>
-    <style>
-        .modal {
-            display: none;
-            position: fixed;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
-        }
-    </style>
+  
 </head>
 <body>
-    <h2>Select an Option to See the Modal</h2>
+    <h2>Emission Calculator</h2>
     
     <div class="dropdown-container">
-    <label for="dropdown">Choose a Modal:</label>
+    <label for="dropdown">Transportation Method:</label>
     <select id="dropdown" onchange="showModal(this.value)">
         <option value="">Select</option>
         <option value="modal1">Flight</option>
@@ -98,16 +87,16 @@ let fuelType = null;
         <thead>
             <tr>
                 <th>Category</th>
-                <th>Value 1</th>
-                <th>Value 2</th>
-                <th>Emission</th>
+                <th>Starting Point</th>
+                <th>Ending Point</th>
+                <th>Emissions</th>
             </tr>
         </thead>
         <tbody id="chartBody"></tbody>
 <script>
 let result = 0;
 </script>
-    <h3>Total Sum: <span id="totalSum">0</span></h3>
+    <h3>Total Emissions: <span id="totalSum">0</span></h3>
     <script>
         let totalSum = 0;
         async function calculate(modalId) {
