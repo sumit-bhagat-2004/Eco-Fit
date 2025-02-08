@@ -99,7 +99,6 @@ function loadingAnimation() {
             duration: 0.2
         })
     })
-}
 
 function page2Animation() {
     var rightElems = document.querySelectorAll(".right-elem")
