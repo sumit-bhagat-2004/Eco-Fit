@@ -9,6 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
     <link rel="stylesheet" href="style.css">
+    <script src="script1.js" defer></script>
 </head>
 
 <body>
@@ -24,7 +25,7 @@
                
             </div>
             <div class="nav-elem">
-                <h4> <a href="./Emmison Calculator/emmision calculator.html">  Carbon Savings Calculator</a></h4>
+                <h4> <a href="emmision calculator.html">  Carbon Savings Calculator</a></h4>
             </div>
             <div class="nav-elem">
                 
@@ -36,17 +37,30 @@
                 <h4>User Journeys</h4>
             </div>
         </div>
-        <button onclick="window.location.href='login.html'">Take charge <svg fill="none" viewBox="0 0 20 20">
+        <button onclick="window.location.href='login.html'" id="signin-section">Take charge <svg fill="none" viewBox="0 0 20 20">
+        
             <path fill="#fff"
                 d="M2.5 14.375V17.5h3.125l9.217-9.217-3.125-3.125L2.5 14.375Zm14.758-8.508a.83.83 0 0 0 0-1.175l-1.95-1.95a.83.83 0 0 0-1.175 0l-1.525 1.525 3.125 3.125 1.525-1.525Z">
             </path>
             </svg></button>
+            <button id="profileButton" style="display: none;">Profile</button>
+            <li id="profile-section" class="hidden">
+                <a href="#" id="profile-button">Profile</a>
+                <div id="profile-modal" class="profile-modal">
+                  <div class="profile-modal-content">
+                    <span class="profile-modal-close">&times;</span>
+                    <p>Name: <span id="profile-name"></span></p>
+                    <p>Username: <span id="profile-username"></span></p>
+                    <p>Email: <span id="profile-email"></span></p>
+                    <button id="logout-button">Logout</button>
         <div id="nav-bottom">
 
         </div>
     </nav>
    
     <div id="main">
+        <!-- Modal -->
+    </div>
         <div id="page1">
             <h1><span3>KNOW Y<span><svg class="c-bttn__morph" fill="none" viewBox="0 0 131 136">
                         <path class="g-path" data-morph="end" fill="#fff"
