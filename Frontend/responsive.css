@@ -1,0 +1,201 @@
+@media (max-width: 950px) {
+  .picture {
+    width: 440px;
+  }
+  .navlist li a {
+    padding: 10px 15px;
+  }
+}
+
+
+@media (max-width: 843px) {
+  .picture {
+    width: 400px;
+  }
+}
+
+@media (max-width: 770px) {
+  .welcome {
+    font-size: 50px;
+  }
+  .picture {
+    width: 350px;
+  }
+}
+
+@media (max-width: 660px) {
+  .front {
+    flex-direction: column;
+    /*padding: 3.5rem;*/
+  }
+  .desc {
+    height: 60%;
+    width: 100%;
+    padding: 3rem;
+  }
+  .banner {
+    height: 50%;
+    width: 100%;
+  }
+  .picture {
+    height: 90%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 435px) {
+  .info {
+    font-size: 0.9rem;
+  }
+  .welcome {
+    font-size: 35px;
+  }
+
+  .info a {
+    font-size: 14px;
+    padding: 2px 5px;
+  }
+}
+
+@media (max-width: 768px) {
+  .feature-icon {
+    width: 40px;
+    height: 40px;
+  }
+  .feature-item h3 {
+    font-size: 1rem;
+  }
+  .feature-item p {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .features-section {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 750px) {
+  .section_data h2 {
+    font-size: 1.3rem;
+  }
+  .section_data li {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .data_info {
+    flex-direction: column-reverse;
+    height: 50%;
+  }
+  .alt {
+    flex-direction: column-reverse;
+  }
+  .section_data {
+    width: 90%;
+    height: 50%;
+    padding: 1.5rem;
+  }
+  .section_image {
+    width: 100%;
+  }
+  .section_image img {
+    height: 220px;
+  }
+}
+
+@media (max-width: 834px) {
+  .navlist {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7); /* Translucent background */
+    height: 45vh; /* Cover half of the screen height */
+    z-index: 999;
+  }
+
+  .navlist.active {
+    display: flex;
+  }
+
+  .navlist li {
+    border-right: none;
+    border-bottom: thin solid white; /* Horizontal lines */
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+
+  }
+
+  .navlist li a {
+    padding: 10px;
+  }
+
+  .navlist li:last-child {
+    border-bottom: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  /*.navbar-right {
+    display: none;
+  }*/
+
+  .navbar-right-mobile {
+    display: none;
+    width: 100%;
+    padding: 10px;
+    border-top: thin solid white;
+    text-align: center;
+  }
+
+  .navlist.active .navbar-right-mobile {
+    display: block;
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+  .install-container {
+    flex-direction: column-reverse; /* Stack elements vertically on small screens */
+    align-items: center; /* Center elements horizontally */
+    justify-content: center; /* Center elements vertically */
+  }
+
+  .install-info {
+    padding-right: 0; /* Remove right padding */
+    margin-bottom: 20px; /* Margin below install info */
+    max-width: 80%; /* 80% of the container width */
+  }
+
+  .screenshot {
+    width: 90%; /* Each screenshot takes 90% of the container width on smaller screens */
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+  .teacher-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .teacher-img {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+}
+@media (max-width: 900px) {
+  .teacher-install {
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 90%;
+  }
+}
