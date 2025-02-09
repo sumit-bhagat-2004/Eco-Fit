@@ -17,18 +17,18 @@ body {
     background-color: #111;
 }
 nav {
-    position: fixed;
+    position: sticky;
     display: flex;
     align-items: center;
-    height: 3vh;
+    height: 4vh;
     width: 100%;
     padding: 1.5vw 10vw;
     justify-content: right;
-    background-color: rgb(65, 15, 65); /* Decent background color */
+    background-color: transparent; /* Decent background color */
     z-index: 1000; /* Ensure navbar is on top */
 }
 nav h1 {
-    color: #f6d5d5;
+    color: #fff;
     font-size: 1vh;
     font-weight: 700;
     text-transform: uppercase;
@@ -75,7 +75,7 @@ nav h1 {
 }
 
 nav ul li a:hover {
-    color: #552a2a; /* Change to white on hover */
+    color: red; /* Change to white on hover */
     border-radius: 25%;
 }
 nav button {
