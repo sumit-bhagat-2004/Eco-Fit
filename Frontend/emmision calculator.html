@@ -88,6 +88,7 @@
                 <th>Starting Point</th>
                 <th>Ending Point</th>
                 <th>Emissions</th>
+                <th>Analysis</th>
             </tr>
         </thead>
         <tbody id="chartBody"></tbody>
@@ -101,6 +102,7 @@
             let val1 = document.getElementById(`input1-modal${modalId}`).value.trim();
             let val2 = document.getElementById(`input2-modal${modalId}`).value.trim();
             let emission = 0;
+            let analysis = "";
 
             switch (modalId) {
                 case 1: {
@@ -136,9 +138,10 @@
                         result = parseFloat(data.distance_km);
                         emission = parseFloat(data.emission_kg_co2);
                         const factor = parseFloat(data.emission_factor);
+                        analysis = data.analysis;
 
                         console.log(`Distance: ${result} km, Emission: ${emission} kg CO2, Factor: ${factor}`);
-                        return emission;
+                        return { emission, analysis, factor, distance: result };
                     } catch (error) {
                         console.error("Error calculating emissions:", error);
                         alert("Error calculating emissions.");
@@ -178,9 +181,10 @@
                         result = parseFloat(data.distance_km);
                         emission = parseFloat(data.emission_kg_co2);
                         const factor = parseFloat(data.emission_factor);
+                        analysis = data.analysis;
 
                         console.log(`Distance: ${result} km, Emission: ${emission} kg CO2, Factor: ${factor}`);
-                        return emission;
+                        return { emission, analysis, factor, distance: result };
                     } catch (error) {
                         console.error("Error calculating emissions:", error);
                         alert("Error calculating emissions.");
@@ -221,9 +225,10 @@
                         result = parseFloat(data.distance_km);
                         emission = parseFloat(data.emission_kg_co2);
                         const factor = parseFloat(data.emission_factor);
+                        analysis = data.analysis;
 
                         console.log(`Distance: ${result} km, Emission: ${emission} kg CO2, Factor: ${factor}`);
-                        return emission;
+                        return { emission, analysis, factor, distance: result };
                     } catch (error) {
                         console.error("Error calculating emissions:", error);
                         alert("Error calculating emissions.");
@@ -264,9 +269,10 @@
                         result = parseFloat(data.distance_km);
                         emission = parseFloat(data.emission_kg_co2);
                         const factor = parseFloat(data.emission_factor);
+                        analysis = data.analysis;
 
                         console.log(`Distance: ${result} km, Emission: ${emission} kg CO2, Factor: ${factor}`);
-                        return emission;
+                        return { emission, analysis, factor, distance: result };
                     } catch (error) {
                         console.error("Error calculating emissions:", error);
                         alert("Error calculating emissions.");
@@ -307,9 +313,10 @@
                         result = parseFloat(data.distance_km);
                         emission = parseFloat(data.emission_kg_co2);
                         const factor = parseFloat(data.emission_factor);
+                        analysis = data.analysis;
 
                         console.log(`Distance: ${result} km, Emission: ${emission} kg CO2, Factor: ${factor}`);
-                        return emission;
+                        return { emission, analysis, factor, distance: result };
                     } catch (error) {
                         console.error("Error calculating emissions:", error);
                         alert("Error calculating emissions.");
@@ -350,9 +357,10 @@
                         result = parseFloat(data.distance_km);
                         emission = parseFloat(data.emission_kg_co2);
                         const factor = parseFloat(data.emission_factor);
+                        analysis = data.analysis;
 
                         console.log(`Distance: ${result} km, Emission: ${emission} kg CO2, Factor: ${factor}`);
-                        return emission;
+                        return { emission, analysis, factor, distance: result };
                     } catch (error) {
                         console.error("Error calculating emissions:", error);
                         alert("Error calculating emissions.");
@@ -368,9 +376,11 @@
         async function addToChart(modalId) {
             let val1 = document.getElementById(`input1-modal${modalId}`).value;
             let val2 = document.getElementById(`input2-modal${modalId}`).value;
-            let emission = await calculate(modalId);
+            let result = await calculate(modalId);
 
             if (result === 0) return;
+
+            let { emission, analysis, factor, distance } = result;
 
             let tableBody = document.getElementById('chartBody');
             let newRow = tableBody.insertRow();
@@ -379,11 +389,13 @@
             let cell2 = newRow.insertCell(1);
             let cell3 = newRow.insertCell(2);
             let cell4 = newRow.insertCell(3);
+            let cell5 = newRow.insertCell(4);
             
             cell1.textContent = modalNames[`modal${modalId}`];
             cell2.textContent = val1;
             cell3.textContent = val2;
-            cell4.textContent = emission;
+            cell4.textContent = `${emission} kg CO2 (Distance: ${distance} km * Factor: ${factor})`;
+            cell5.textContent = analysis;
             
             totalSum += emission;
             document.getElementById('totalSum').textContent = totalSum;
@@ -400,5 +412,7 @@
             document.getElementById(modalId).style.display = 'none';
         }
     </script>
+
+    <p>Note: All emission factors are per IPCC standards.</p>
 </body>
 </html>
