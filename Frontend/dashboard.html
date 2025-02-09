@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Fit Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Google Fit Data</h1>
+        <button id="fetchData">Get Step Count</button>
+        <p><strong>Steps:</strong> <span id="steps">Loading...</span></p>
+        <button id="logoutBtn">Logout</button>
+    </div>
+
+    <script>
+        document.getElementById("fetchData").addEventListener("click", () => {
+            const userId = localStorage.getItem("userId");
+            if (!userId) {
+                alert("User not logged in.");
+                return;
+            }
+
+            fetch("https://your-api-gateway-url/fetchGoogleFitData?userId=" + userId)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("steps").innerText = data.steps || "No data found";
+                })
+                .catch(error => console.error("Error:", error));
+        });
+
+        document.getElementById("logoutBtn").addEventListener("click", () => {
+            localStorage.clear();
+            window.location.href = "index.html";
+        });
+    </script>
+
+</body>
+</html>
