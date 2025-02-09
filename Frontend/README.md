@@ -1,4 +1,3 @@
-
 # Eco-Fit
 
 ECO-FIT: Your Fitness Journey, Eco-Consciously !
@@ -65,25 +64,23 @@ Give a ⭐️ if you like this project!
     <a href="https://www.linkedin.com/in/utsav-kumar-gupta-3986a228a" target="_blank">LinkedIn</a>
   </p>
  <p align="center">
-    <a href="https://www.linkedin.com/in/utsav-kumar-gupta-3986a228a" target="_blank">LinkedIn</a>
+    <a href="https://www.linkedin.com/in/sumit--chatterjee?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">LinkedIn</a>
   </p>
    <p align="center">
-    <a href="https://www.linkedin.com/in/utsav-kumar-gupta-3986a228a" target="_blank">LinkedIn</a>
+    <a href="https://www.linkedin.com/in/sumit-bhagat-a941762b4/" target="_blank">LinkedIn</a>
   </p>
    <p align="center">
-    <a href="https://www.linkedin.com/in/utsav-kumar-gupta-3986a228a" target="_blank">LinkedIn</a>
+    <a href="https://www.linkedin.com/in/animesh-chandra-925404203?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">LinkedIn</a>
   </p>
    <p align="center">
     <a href="https://www.instagram.com/___.unconscious.___" target="_blank">Instagram</a>
   </p>
      <p align="center">
-    <a href="https://www.instagram.com/___.unconscious.___" target="_blank">Instagram</a>
+    <a href="https://www.instagram.com/sumit__chatterjee?igsh=MWw3dXJhNmZsaGdxZQ==" target="_blank">Instagram</a>
   </p>
      <p align="center">
-    <a href="https://www.instagram.com/___.unconscious.___" target="_blank">Instagram</a>
+    <a href="https://www.instagram.com/sumit_bhagat_2004/" target="_blank">Instagram</a>
   </p>
      <p align="center">
-    <a href="https://www.instagram.com/___.unconscious.___" target="_blank">Instagram</a>
+    <a href="" target="_blank">Instagram</a>
   </p>
- 
-
