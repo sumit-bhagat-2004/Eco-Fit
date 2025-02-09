@@ -9,78 +9,76 @@
     <script src="Road.js"></script>
     <script src="Railway.js"></script>-->
     <script src="emmision factor.js"></script>
-  
 </head>
 <body>
     <h2>Emission Calculator</h2>
     
     <div class="dropdown-container">
-    <label for="dropdown">Transportation Method:</label>
-    <select id="dropdown" onchange="showModal(this.value)">
-        <option value="">Select</option>
-        <option value="modal1">Flight</option>
-        <option value="modal2">Train</option>
-        <option value="modal3">Car</option>
-        <option value="modal4">MotorBike</option>
-        <option value="modal5">Bicycle</option>
-        <option value="modal6">Jogging</option>
-    </select>
-</div>
-<script>
-let mode = null;
-let fuelType = null;
-</script>
-
-<div id="modals-container">
+        <label for="dropdown">Transportation Method:</label>
+        <select id="dropdown" onchange="showModal(this.value)">
+            <option value="">Select</option>
+            <option value="modal1">Flight</option>
+            <option value="modal2">Train</option>
+            <option value="modal3">Car</option>
+            <option value="modal4">MotorBike</option>
+            <option value="modal5">Bicycle</option>
+            <option value="modal6">Jogging</option>
+        </select>
+    </div>
     <script>
-        const modalNames = { "modal1": "Flight", "modal2": "Train", "modal3": "Car", "modal4": "MotorBike", "modal5": "Bicycle", "modal6": "Jogging" };
-        for (let i = 1; i <= 6; i++) {
-            document.write(`
-                <div id="modal${i}" class="modal">
-                    <p>This is ${modalNames[`modal${i}`]} Modal</p>
-                    
-                    ${i === 2 ? `
-                    <label for="train-type">Train Type:</label>
-                    <select id="train-type">
-                        <option value="train_regular">Regular</option>
-                        <option value="train_highspeed">High-Speed</option>
-                        <option value="metro">Metro</option>
-                    </select>
-                    <br>` : ''}
-                    
-                    ${i === 3 ? `
-                    <label for="car-type">Car Type:</label>
-                    <select id="car-type">
-                        <option value="diesel">Diesel</option>
-                        <option value="petrol">Petrol</option>
-                        <option value="electric">Electric</option>
-                    </select>
-                    <br>` : ''}
-                    
-                    ${i === 4 ? `
-                    <label for="bike-type">MotorBike Type:</label>
-                    <select id="bike-type">
-                        <option value="petrol">Petrol</option>
-                        <option value="electric">Electric</option>
-                    </select>
-                    <br>` : ''}
-                    
-                    <label for="input1-modal${i}">Enter Value 1:</label>
-                    <input type="text" id="input1-modal${i}">
-                    <br>
-                    <label for="input2-modal${i}">Enter Value 2:</label>
-                    <input type="text" id="input2-modal${i}">
-                    <br>
-                    <button onclick="calculate(${i})">Calculate</button>
-                    <button onclick="addToChart(${i})">Add to Chart</button>
-                    <br>
-                    <button class="close-btn" onclick="closeModal('modal${i}')">Close</button>
-                </div>
-            `);
-
-        }
+        let mode = null;
+        let fuelType = null;
     </script>
-</div>
+
+    <div id="modals-container">
+        <script>
+            const modalNames = { "modal1": "Flight", "modal2": "Train", "modal3": "Car", "modal4": "MotorBike", "modal5": "Bicycle", "modal6": "Jogging" };
+            for (let i = 1; i <= 6; i++) {
+                document.write(`
+                    <div id="modal${i}" class="modal">
+                        <p>This is ${modalNames[`modal${i}`]} Modal</p>
+                        
+                        ${i === 2 ? `
+                        <label for="train-type">Train Type:</label>
+                        <select id="train-type">
+                            <option value="train_regular">Regular</option>
+                            <option value="train_highspeed">High-Speed</option>
+                            <option value="metro">Metro</option>
+                        </select>
+                        <br>` : ''}
+                        
+                        ${i === 3 ? `
+                        <label for="car-type">Car Type:</label>
+                        <select id="car-type">
+                            <option value="diesel">Diesel</option>
+                            <option value="petrol">Petrol</option>
+                            <option value="electric">Electric</option>
+                        </select>
+                        <br>` : ''}
+                        
+                        ${i === 4 ? `
+                        <label for="bike-type">MotorBike Type:</label>
+                        <select id="bike-type">
+                            <option value="petrol">Petrol</option>
+                            <option value="electric">Electric</option>
+                        </select>
+                        <br>` : ''}
+                        
+                        <label for="input1-modal${i}">Enter Value 1:</label>
+                        <input type="text" id="input1-modal${i}">
+                        <br>
+                        <label for="input2-modal${i}">Enter Value 2:</label>
+                        <input type="text" id="input2-modal${i}">
+                        <br>
+                        <button onclick="calculate(${i})">Calculate</button>
+                        <button onclick="addToChart(${i})">Add to Chart</button>
+                        <br>
+                        <button class="close-btn" onclick="closeModal('modal${i}')">Close</button>
+                    </div>
+                `);
+            }
+        </script>
+    </div>
 
     <h3>Chart</h3>
     <table border="1">
@@ -90,206 +88,318 @@ let fuelType = null;
                 <th>Starting Point</th>
                 <th>Ending Point</th>
                 <th>Emissions</th>
+                <th>Analysis</th>
             </tr>
         </thead>
         <tbody id="chartBody"></tbody>
-<script>
-let result = 0;
-</script>
+    <script>
+        let result = 0;
+    </script>
     <h3>Total Emissions: <span id="totalSum">0</span></h3>
     <script>
         let totalSum = 0;
         async function calculate(modalId) {
-        let val1 = parseFloat(document.getElementById(`input1-modal${modalId}`).value) || 0;
-        let val2 = parseFloat(document.getElementById(`input2-modal${modalId}`).value) || 0;
-        let emission = 0;
+            let val1 = document.getElementById(`input1-modal${modalId}`).value.trim();
+            let val2 = document.getElementById(`input2-modal${modalId}`).value.trim();
+            let emission = 0;
+            let analysis = "";
 
-        switch (modalId) {
-            case 1: {
-            // Flight modal - calculate airport distance
-            const airport1 = document.getElementById(`input1-modal${modalId}`).value.trim().toUpperCase();
-            const airport2 = document.getElementById(`input2-modal${modalId}`).value.trim().toUpperCase();
+            switch (modalId) {
+                case 1: {
+                    // Flight modal - send airport codes to backend for calculation
+                    const airport1 = val1.toUpperCase();
+                    const airport2 = val2.toUpperCase();
 
-            if (!airport1 || !airport2) {
-                alert("Please enter both IATA codes.");
-                return 0;
+                    if (!airport1 || !airport2) {
+                        alert("Please enter both IATA codes.");
+                        return 0;
+                    }
+
+                    try {
+                        const response = await fetch('https://zl2wz03nwc.execute-api.ap-south-1.amazonaws.com/prod/Cal', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ location1: airport1, location2: airport2, mode: "flight" })
+                        });
+
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+
+                        const data = await response.json();
+
+                        if (!data.emission_kg_co2 || !data.emission_factor || !data.distance_km) {
+                            alert("Could not calculate emissions.");
+                            return 0;
+                        }
+
+                        result = parseFloat(data.distance_km);
+                        emission = parseFloat(data.emission_kg_co2);
+                        const factor = parseFloat(data.emission_factor);
+                        analysis = data.analysis;
+
+                        console.log(`Distance: ${result} km, Emission: ${emission} kg CO2, Factor: ${factor}`);
+                        return { emission, analysis, factor, distance: result };
+                    } catch (error) {
+                        console.error("Error calculating emissions:", error);
+                        alert("Error calculating emissions.");
+                        return 0;
+                    }
+                    break;
+                }
+                case 2: {
+                    const station1 = val1;
+                    const station2 = val2;
+
+                    if (!station1 || !station2) {
+                        alert("Please enter both railway station names.");
+                        return 0;
+                    }
+
+                    try {
+                        const response = await fetch('https://zl2wz03nwc.execute-api.ap-south-1.amazonaws.com/prod/Cal', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ location1: station1, location2: station2, mode: document.getElementById("train-type").value })
+                        });
+
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+
+                        const data = await response.json();
+
+                        if (!data.emission_kg_co2 || !data.emission_factor || !data.distance_km) {
+                            alert("Could not calculate emissions.");
+                            return 0;
+                        }
+
+                        result = parseFloat(data.distance_km);
+                        emission = parseFloat(data.emission_kg_co2);
+                        const factor = parseFloat(data.emission_factor);
+                        analysis = data.analysis;
+
+                        console.log(`Distance: ${result} km, Emission: ${emission} kg CO2, Factor: ${factor}`);
+                        return { emission, analysis, factor, distance: result };
+                    } catch (error) {
+                        console.error("Error calculating emissions:", error);
+                        alert("Error calculating emissions.");
+                        return 0;
+                    }
+                    break;
+                }
+                case 3: {
+                    // Road distance modal - send locations to backend for calculation
+                    const location1 = val1;
+                    const location2 = val2;
+
+                    if (!location1 || !location2) {
+                        alert("Please enter both locations.");
+                        return 0;
+                    }
+
+                    try {
+                        const response = await fetch('https://zl2wz03nwc.execute-api.ap-south-1.amazonaws.com/prod/Cal', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ location1, location2, mode: "car", fuel_type: document.getElementById("car-type").value })
+                        });
+
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+
+                        const data = await response.json();
+
+                        if (!data.emission_kg_co2 || !data.emission_factor || !data.distance_km) {
+                            alert("Could not calculate emissions.");
+                            return 0;
+                        }
+
+                        result = parseFloat(data.distance_km);
+                        emission = parseFloat(data.emission_kg_co2);
+                        const factor = parseFloat(data.emission_factor);
+                        analysis = data.analysis;
+
+                        console.log(`Distance: ${result} km, Emission: ${emission} kg CO2, Factor: ${factor}`);
+                        return { emission, analysis, factor, distance: result };
+                    } catch (error) {
+                        console.error("Error calculating emissions:", error);
+                        alert("Error calculating emissions.");
+                        return 0;
+                    }
+                    break;
+                }
+                case 4: {
+                    // Road distance modal - send locations to backend for calculation
+                    const location1 = val1;
+                    const location2 = val2;
+
+                    if (!location1 || !location2) {
+                        alert("Please enter both locations.");
+                        return 0;
+                    }
+
+                    try {
+                        const response = await fetch('https://zl2wz03nwc.execute-api.ap-south-1.amazonaws.com/prod/Cal', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ location1, location2, mode: "motorbike", fuel_type: document.getElementById("bike-type").value })
+                        });
+
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+
+                        const data = await response.json();
+
+                        if (!data.emission_kg_co2 || !data.emission_factor || !data.distance_km) {
+                            alert("Could not calculate emissions.");
+                            return 0;
+                        }
+
+                        result = parseFloat(data.distance_km);
+                        emission = parseFloat(data.emission_kg_co2);
+                        const factor = parseFloat(data.emission_factor);
+                        analysis = data.analysis;
+
+                        console.log(`Distance: ${result} km, Emission: ${emission} kg CO2, Factor: ${factor}`);
+                        return { emission, analysis, factor, distance: result };
+                    } catch (error) {
+                        console.error("Error calculating emissions:", error);
+                        alert("Error calculating emissions.");
+                        return 0;
+                    }
+                    break;
+                }
+                case 5: {
+                    // Road distance modal - send locations to backend for calculation
+                    const location1 = val1;
+                    const location2 = val2;
+
+                    if (!location1 || !location2) {
+                        alert("Please enter both locations.");
+                        return 0;
+                    }
+
+                    try {
+                        const response = await fetch('https://zl2wz03nwc.execute-api.ap-south-1.amazonaws.com/prod/Cal', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ location1, location2, mode: "bicycle" })
+                        });
+
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+
+                        const data = await response.json();
+
+                        if (!data.emission_kg_co2 || !data.emission_factor || !data.distance_km) {
+                            alert("Could not calculate emissions.");
+                            return 0;
+                        }
+
+                        result = parseFloat(data.distance_km);
+                        emission = parseFloat(data.emission_kg_co2);
+                        const factor = parseFloat(data.emission_factor);
+                        analysis = data.analysis;
+
+                        console.log(`Distance: ${result} km, Emission: ${emission} kg CO2, Factor: ${factor}`);
+                        return { emission, analysis, factor, distance: result };
+                    } catch (error) {
+                        console.error("Error calculating emissions:", error);
+                        alert("Error calculating emissions.");
+                        return 0;
+                    }
+                    break;
+                }
+                case 6: {
+                    // Road distance modal - send locations to backend for calculation
+                    const location1 = val1;
+                    const location2 = val2;
+
+                    if (!location1 || !location2) {
+                        alert("Please enter both locations.");
+                        return 0;
+                    }
+
+                    try {
+                        const response = await fetch('https://zl2wz03nwc.execute-api.ap-south-1.amazonaws.com/prod/Cal', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ location1, location2, mode: "jogging" })
+                        });
+
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+
+                        const data = await response.json();
+
+                        if (!data.emission_kg_co2 || !data.emission_factor || !data.distance_km) {
+                            alert("Could not calculate emissions.");
+                            return 0;
+                        }
+
+                        result = parseFloat(data.distance_km);
+                        emission = parseFloat(data.emission_kg_co2);
+                        const factor = parseFloat(data.emission_factor);
+                        analysis = data.analysis;
+
+                        console.log(`Distance: ${result} km, Emission: ${emission} kg CO2, Factor: ${factor}`);
+                        return { emission, analysis, factor, distance: result };
+                    } catch (error) {
+                        console.error("Error calculating emissions:", error);
+                        alert("Error calculating emissions.");
+                        return 0;
+                    }
+                    break;
+                }
+                default:
+                    break;
             }
-
-            const coord1 = await getAirportCoordinates(airport1);
-            const coord2 = await getAirportCoordinates(airport2);
-
-            if (!coord1 || !coord2) {
-                alert("Could not find one or both airports.");
-                return 0;
-            }
-
-            result = parseFloat(haversine(coord1.lat, coord1.lon, coord2.lat, coord2.lon));
-            break;
         }
-        case 2: {
-            const station1 = document.getElementById(`input1-modal${modalId}`).value.trim();
-            const station2 = document.getElementById(`input2-modal${modalId}`).value.trim();
 
-            if (!station1 || !station2) {
-                alert("Please enter both railway station names.");
-                return 0;
-            }
+        async function addToChart(modalId) {
+            let val1 = document.getElementById(`input1-modal${modalId}`).value;
+            let val2 = document.getElementById(`input2-modal${modalId}`).value;
+            let result = await calculate(modalId);
 
-            const coord1 = await getStationCoordinates(station1);
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            const coord2 = await getStationCoordinates(station2);
+            if (result === 0) return;
 
-            if (!coord1 || !coord2) {
-                alert("Could not find one or both railway stations.");
-                return 0;
-            }
+            let { emission, analysis, factor, distance } = result;
 
-            result = parseFloat(haversine(coord1.lat, coord1.lon, coord2.lat, coord2.lon));
-            break;
+            let tableBody = document.getElementById('chartBody');
+            let newRow = tableBody.insertRow();
+
+            let cell1 = newRow.insertCell(0);
+            let cell2 = newRow.insertCell(1);
+            let cell3 = newRow.insertCell(2);
+            let cell4 = newRow.insertCell(3);
+            let cell5 = newRow.insertCell(4);
+            
+            cell1.textContent = modalNames[`modal${modalId}`];
+            cell2.textContent = val1;
+            cell3.textContent = val2;
+            cell4.textContent = `${emission} kg CO2 (Distance: ${distance} km * Factor: ${factor})`;
+            cell5.textContent = analysis;
+            
+            totalSum += emission;
+            document.getElementById('totalSum').textContent = totalSum;
         }
-        case 3: {
-            // Road distance modal - calculate distance between two locations
-            const location1 = document.getElementById(`input1-modal${modalId}`).value;
-            const location2 = document.getElementById(`input2-modal${modalId}`).value;
-            if (!location1 || !location1) {
-                alert("Please enter both locations.");
-                return 0;
-            }
-            const coord1 = await getCoordinatesroad(location1);
-            const coord2 = await getCoordinatesroad(location2);
-            if (!coord1 || !coord2) {
-            alert("Could not find one or both locations.");
-            return 0;
-            }
-            result = parseFloat(await getRoadDistance(coord1, coord2));
-            break;
-        }
-        case 4: {
-            // Road distance modal - calculate distance between two locations
-            const location1 = document.getElementById(`input1-modal${modalId}`).value;
-            const location2 = document.getElementById(`input2-modal${modalId}`).value;
-            if (!location1 || !location1) {
-                alert("Please enter both locations.");
-                return 0;
-            }
-            const coord1 = await getCoordinatesroad(location1);
-            const coord2 = await getCoordinatesroad(location2);
-            if (!coord1 || !coord2) {
-            alert("Could not find one or both locations.");
-            return 0;
-            }
-            result = parseFloat(await getRoadDistance(coord1, coord2));
-            break;
-        }
-        case 5: {
-            // Road distance modal - calculate distance between two locations
-            const location1 = document.getElementById(`input1-modal${modalId}`).value;
-            const location2 = document.getElementById(`input2-modal${modalId}`).value;
-            if (!location1 || !location1) {
-                alert("Please enter both locations.");
-                return 0;
-            }
-            const coord1 = await getCoordinatesroad(location1);
-            const coord2 = await getCoordinatesroad(location2);
-            if (!coord1 || !coord2) {
-            alert("Could not find one or both locations.");
-            return 0;
-            }
-            result = parseFloat(await getRoadDistance(coord1, coord2));
-            break;
-        }
-        case 6: {
-            // Road distance modal - calculate distance between two locations
-            const location1 = document.getElementById(`input1-modal${modalId}`).value;
-            const location2 = document.getElementById(`input2-modal${modalId}`).value;
-            if (!location1 || !location1) {
-                alert("Please enter both locations.");
-                return 0;
-            }
-            const coord1 = await getCoordinatesroad(location1);
-            const coord2 = await getCoordinatesroad(location2);
-            if (!coord1 || !coord2) {
-            alert("Could not find one or both locations.");
-            return 0;
-            }
-            result = parseFloat(await getRoadDistance(coord1, coord2));
-            break;
-        }
-            default:
-                break;
-        }
-        const distance = result;
-        const modalcheck = document.getElementById("dropdown").value;
-        if (modalcheck === "modal1") {
-              mode = "flight";
-            }
-                else if (modalcheck === "modal2") {
-              mode = document.getElementById("train-type").value;
-            } else if (modalcheck === "modal3") {
-              fuelType = document.getElementById("car-type").value;
-              mode = "car";
-
-            }else if (modalcheck === "modal4") {
-              fuelType = document.getElementById("bike-type").value;;
-              mode = "motorbike";
-            }else if (modalcheck === "modal5") {
-              mode = "bicycle";
-            }else if (modalcheck === "modal6") {
-              mode = "jogging";
-        }
-        console.log(distance);
-        console.log(mode);
-        console.log(fuelType);
-
-        emission = calculateEmission(mode, distance, fuelType)
-
-        return emission;
-    }
-    async function getRoadDistance(coord1, coord2) {
-    const osrmUrl = `http://router.project-osrm.org/route/v1/driving/${coord1.lon},${coord1.lat};${coord2.lon},${coord2.lat}?overview=false`;
-    const headers = { 'User-Agent': 'road-distance-app' };
-
-    try {
-        const response = await fetch(osrmUrl, { headers });
-        const data = await response.json();
-
-        if (data.routes && data.routes.length > 0) {
-            const distanceMeters = data.routes[0].distance;
-            return (distanceMeters / 1000).toFixed(2); // Convert meters to kilometers
-        } else {
-            throw new Error("Could not calculate road distance.");
-        }
-    } catch (error) {
-        console.error("Error calculating road distance:", error);
-        return null;
-    }
-}
-    
-
-    async function addToChart(modalId) {
-    let val1 = document.getElementById(`input1-modal${modalId}`).value;
-    let val2 = document.getElementById(`input2-modal${modalId}`).value;
-    let emission = await calculate(modalId);
-
-    if (result === 0) return;
-
-    let tableBody = document.getElementById('chartBody');
-    let newRow = tableBody.insertRow();
-
-    let cell1 = newRow.insertCell(0);
-    let cell2 = newRow.insertCell(1);
-    let cell3 = newRow.insertCell(2);
-    let cell4 = newRow.insertCell(3);
-    
-    cell1.textContent = modalNames[`modal${modalId}`];
-    cell2.textContent = val1;
-    cell3.textContent = val2;
-    cell4.textContent = emission;
-    
-    totalSum += emission;
-    document.getElementById('totalSum').textContent = totalSum;
-}
-
 
         function showModal(modalId) {
             document.querySelectorAll('.modal').forEach(modal => modal.style.display = 'none');
@@ -302,5 +412,7 @@ let result = 0;
             document.getElementById(modalId).style.display = 'none';
         }
     </script>
+
+    <p>Note: All emission factors are per IPCC standards.</p>
 </body>
 </html>

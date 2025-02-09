@@ -1,19 +1,3 @@
-document.addEventListener('DOMContentLoaded', (event) => {
-    if (document.cookie.includes('cookieAccepted')) {
-      // Register service worker if cookies are accepted
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/service-worker.js')
-          .then(registration => {
-            console.log('Service Worker registered with scope:', registration.scope);
-          }).catch(error => {
-            console.log('Service Worker registration failed:', error);
-          });
-      }
-  
-      // Initialize other JavaScript functions
-      initializeYourFunctions();
-    }
-    });
 
     document.addEventListener('DOMContentLoaded', () => {
         const hamburger = document.getElementById('hamburger');
@@ -27,24 +11,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
           }
         });
       });
-
-  document.getElementById('share-button').addEventListener('click', async () => {
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: 'Benavodayan',
-          text: 'Check out this awesome educational app!',
-          url: window.location.href
-        });
-        console.log('App shared successfully');
-      } catch (error) {
-        console.error('Error sharing app:', error);
-      }
-    } else {
-      alert('Web Share API not supported in this browser.');
-    }
-  });
-
 document.addEventListener("DOMContentLoaded", function() {
     var modal = document.getElementById("modal");
     var modalImg = document.getElementById("modal-img");
@@ -73,12 +39,12 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function federatedSignUp() {
-    const cognitoDomain = 'benavodayan.auth.ap-south-1.amazoncognito.com';
-    const clientId = '3rtrk6e03558u1osmo6pgi95ce';
-    const redirectUri = 'https://www.benavodayan.in/index.html';
+    const cognitoDomain = 'ap-south-1yd5k4yli6.auth.ap-south-1.amazoncognito.com';
+    const clientId = '76e6r6k2nssrnqe5k428qcgqod';
+    const redirectUri = 'd9rcwfrwbqgvj.cloudfront.net';
     const responseType = 'code'; // Change response_type to 'code'
 
-    const signUpUrl = `https://${cognitoDomain}/oauth2/authorize?response_type=${responseType}&client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=email+profile+openid`;
+    const signUpUrl = `https://ap-south-1yd5k4yli6.auth.ap-south-1.amazoncognito.com/login?client_id=76e6r6k2nssrnqe5k428qcgqod&response_type=code&scope=email+openid+profile&redirect_uri=https%3A%2F%2Fd9rcwfrwbqgvj.cloudfront.net`;
     window.location.href = signUpUrl;
 }
 
@@ -94,6 +60,17 @@ function handleCognitoCallback() {
     const code = urlParams.get('code');
 
     if (code) {
+        /*fetch("https://your-api-gateway-url/callback?code=" + authCode)
+                .then(response => response.json())
+                .then(data => {
+                    localStorage.setItem("accessToken", data.access_token);
+                    localStorage.setItem("userId", data.userId);
+                    //window.location.href = "dashboard.html"; // Redirect to dashboard
+                })
+                .catch(error => console.error("Error:", error));
+        } else {
+            document.body.innerHTML = "<h2>Login failed. No auth code received.</h2>";
+        }*/
         exchangeCodeForTokens(code);
         handledCallback = true; // Mark callback as handled
     }
@@ -101,7 +78,7 @@ function handleCognitoCallback() {
 
 // Function to exchange code for tokens and save user
 async function exchangeCodeForTokens(code) {
-    const apiUrl = 'https://43tqjz6wzi.execute-api.ap-south-1.amazonaws.com/prod/Users'; // Replace with your API Gateway URL
+    const apiUrl = 'https://zlmz2kojk6.execute-api.ap-south-1.amazonaws.com/prod/SaveUser'; // Replace with your API Gateway URL
 
     try {
         const response = await fetch(apiUrl, {
@@ -211,8 +188,6 @@ function storeTokensInCookies(tokens) {
     setCookie("id_token", idToken, 30); // Expires in 30 minutes
     setCookie("access_token", accessToken, 30); // Expires in 30 minutes
     setCookie("refresh_token", refreshToken, 1440); // Expires in 1 day (1440 minutes)
-    setCookie("subscription", subscription, 30);
-    setCookie("phone", phone, 30);
 
     console.log("Tokens stored in cookies successfully.");
     
@@ -318,9 +293,9 @@ function logout() {
     }
 
     // Define client ID and logout redirect URI
-    const clientId = '3rtrk6e03558u1osmo6pgi95ce';
-    const logoutUri = encodeURIComponent('https://www.benavodayan.in/index.html');
-    const cognitoLogoutUrl = `https://benavodayan.auth.ap-south-1.amazoncognito.com/logout?client_id=${clientId}&logout_uri=${logoutUri}&id_token_hint=${idToken}`;
+    const clientId = '76e6r6k2nssrnqe5k428qcgqod';
+    const logoutUri = encodeURIComponent('https://d9rcwfrwbqgvj.cloudfront.net/');
+    const cognitoLogoutUrl = `https://ap-south-1yd5k4yli6.auth.ap-south-1.amazoncognito.com/logout?client_id=${clientId}&logout_uri=${logoutUri}&id_token_hint=${idToken}`;
 
     // Attempt to redirect to Cognito logout endpoint
     try {
@@ -334,7 +309,7 @@ function logout() {
 
 // Function to delete cookies
 function deleteCookies() {
-    const cookies = ["id_token", "access_token", "refresh_token", "username", "name", "given_name", "family_name", "email","subscription","phone"];
+    const cookies = ["id_token", "access_token", "refresh_token", "username", "name", "given_name", "family_name", "email"];
     cookies.forEach(cookie => deleteCookie(cookie));
 }
 
@@ -415,7 +390,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById('cookieConsent').style.display = 'none';
     }
 });
-// Function to show processing modal after redirection
+/*// Function to show processing modal after redirection
 function showProcessingModal() {
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');
@@ -455,7 +430,7 @@ function showProcessingModal() {
             contactInfo[2].innerText = "Please note the transaction ID for further use.";
             contactInfo[3].style.display = 'none';
             contactInfo[4].style.display = 'none';
-            /*contactInfo[5].style.display = 'none';*/
+            /*contactInfo[5].style.display = 'none';
         } else {
             loader.className = 'red-cross';
             heading.innerText = "Payment Unsuccessful";
@@ -464,7 +439,7 @@ function showProcessingModal() {
             contactInfo[2].innerText = 'Owner: Sumit Bhagat';
             contactInfo[3].style.display = 'Phone: 629172541';
             contactInfo[4].style.display = 'email: infobenavodayan@gmail.com';
-            /*contactInfo[5].style.display = 'none';*/
+            /*contactInfo[5].style.display = 'none';
         }
 
         // Add countdown timer and clickable link
@@ -535,4 +510,4 @@ window.addEventListener('beforeinstallprompt', (e) => {
       document.getElementById('installBtn').style.display = 'none'; // Hide button again
     });
   });
-});
+});*/
