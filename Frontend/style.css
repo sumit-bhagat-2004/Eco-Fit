@@ -119,7 +119,6 @@ nav button svg {
 #page1 {
     height: 100vh;
     width: 100%;
-    background-color: #111;
     display: flex;
     flex-direction: column;
     align-items: center;
