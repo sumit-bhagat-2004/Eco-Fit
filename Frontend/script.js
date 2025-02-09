@@ -294,7 +294,7 @@ function logout() {
 
     // Define client ID and logout redirect URI
     const clientId = '76e6r6k2nssrnqe5k428qcgqod';
-    const logoutUri = encodeURIComponent('https://d9rcwfrwbqgvj.cloudfront.net/');
+    const logoutUri = encodeURIComponent('https://d9rcwfrwbqgvj.cloudfront.net');
     const cognitoLogoutUrl = `https://ap-south-1yd5k4yli6.auth.ap-south-1.amazoncognito.com/logout?client_id=${clientId}&logout_uri=${logoutUri}&id_token_hint=${idToken}`;
 
     // Attempt to redirect to Cognito logout endpoint
