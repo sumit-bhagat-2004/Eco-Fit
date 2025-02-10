@@ -33,9 +33,9 @@ It consists of sections in the home page like - What makes us different?, Carbon
 # 🚀 Setup/Installation Requirements
 
 To view the website, 
-* click [Eco-Fit](https://github.com/)
+* click [Eco-Fit](https://d9rcwfrwbqgvj.cloudfront.net/index.html)
 or 
-* copy the link (https://github.com/) paste it to your browser and load it.  
+* copy the link(https://github.com/Utsav9163/Eco-Fit) paste it to your browser and load it.  
 
 # 🛠 Built With 💚
 
@@ -56,7 +56,7 @@ Give a ⭐️ if you like this project!
 
 
 # 📝 License
-(c) [UTSAV](https://github.com/Utsav9163) 
+(c) [UTSAV](https://github.com/Utsav9163/Eco-Fit)
 
 <h5 align="center">Connect with us!</h5>
 
