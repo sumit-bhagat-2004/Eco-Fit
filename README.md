@@ -1,17 +1,17 @@
-# Eco-Fit
+# Eco-Fit🌱
 
-ECO-FIT: Your Fitness Journey, Eco-Consciously !
+ECO-FIT🌱 : Your Fitness Journey, Eco-Consciously ! ✅♻️
 
 # About this project 🚀
 This is a sample project of creating a Sports and fitness website to deliver its service using carbon footprint tracker.
 
 # How it looks 📷
 
-![Image](https://github.com/user-attachments/assets/2971823a-a90f-4644-9521-850c4d66e696)
+![Image](https://github.com/user-attachments/assets/e24518c5-ce2b-4605-ae56-63537bdf5c41)
 
-![Image](https://github.com/user-attachments/assets/0e107ef3-a7aa-41b3-a21a-227246684cbc)
+![Image](https://github.com/user-attachments/assets/3fa3c17e-a899-4799-aff2-04a57e93184c)
 
-![Image](https://github.com/user-attachments/assets/dbf6d843-0317-4768-817b-caca4d22d566)
+![Image](https://github.com/user-attachments/assets/15faecea-4eaf-48c5-9b67-1cc351e2035c)
 
 <br>
 It consists of sections in the home page like - What makes us different?, Carbon Savings Calculator, User Journeys tabs. Finally about the Carbon Savings Calculator followed by quick links of the page.
@@ -37,7 +37,7 @@ To view the website,
 or 
 * copy the link (https://github.com/) paste it to your browser and load it.  
 
-# 🛠 Built With
+# 🛠 Built With 💚
 
 * HTML
 * CSS
@@ -46,11 +46,11 @@ or
 
 This is our group project creating a Responsive Sports & Fitness Website for the hackathon - Frosthacks S01, conducted by Academy of Technology from 7th to 9th Feb,2025.
 
-# 🤝 Contributing 
+# 🤝 Contributing 🤝
 
 Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](/issues).
 
-# ⭐️ Show your support 
+# ⭐️ Show your support ⭐
 
 Give a ⭐️ if you like this project!
 
