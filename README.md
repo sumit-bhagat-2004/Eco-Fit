@@ -1,6 +1,12 @@
+
 # Eco-Fit🌱
 
 ECO-FIT🌱 : Your Fitness Journey, Eco-Consciously ! ✅♻️
+
+# Eco-Fit 🌱
+
+ECO-FIT 🌱: Your Fitness Journey, Eco-Consciously !✅
+
 
 # About this project 🚀
 This is a sample project of creating a Sports and fitness website to deliver its service using carbon footprint tracker.
@@ -44,13 +50,18 @@ or
 * Python
 * JAVASCRIPT
 
+
 This is our group project creating a Responsive Sports & Fitness Website for the hackathon - Frosthacks S01, conducted by Academy of Technology from 7th to 9th Feb,2025.
 
 # 🤝 Contributing 🤝
 
 Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](/issues).
 
+
 # ⭐️ Show your support ⭐
+
+# ⭐️ Show your support ⭐️
+
 
 Give a ⭐️ if you like this project!
 
